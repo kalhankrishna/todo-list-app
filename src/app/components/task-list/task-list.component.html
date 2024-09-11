@@ -1,0 +1,15 @@
+<div class="task-list">
+  <h2>Your Tasks</h2>
+  <div *ngIf="tasks$ | async as tasks; else noTasks">
+    <app-task-item
+      *ngFor="let task of tasks"
+      [task]="task"
+      (delete)="onDeleteTask(task.id)"
+      (toggle)="onToggleTask(task.id)"
+    >
+    </app-task-item>
+  </div>
+  <ng-template #noTasks>
+    <p>No tasks available. Please add some tasks!</p>
+  </ng-template>
+</div>
