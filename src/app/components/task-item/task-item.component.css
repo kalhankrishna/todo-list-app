@@ -1,0 +1,37 @@
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: left; /* Override global center alignment */
+  padding: 8px 0;
+}
+
+.task-checkbox {
+  margin-right: 16px;
+}
+
+.task-details {
+  flex-grow: 1; /* Makes the task details take up remaining space */
+  margin-right: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-title {
+  font-weight: bold;
+}
+
+.task-desc {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.delete-button {
+  margin-left: auto; /* Pushes the delete button to the right end */
+}
+
+.completed .task-title {
+  text-decoration: line-through;
+  color: #888;
+}

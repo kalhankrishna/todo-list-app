@@ -1,10 +1,19 @@
 <div class="task-item" [class.completed]="task.isCompleted">
-  <input
-    type="checkbox"
+  <mat-checkbox
+    class="task-checkbox"
     [checked]="task.isCompleted"
     (change)="toggle.emit(task.id)"
-  />
-  <span>{{ task.title }}</span>
-  <span>{{ task.description }}</span>
-  <button (click)="delete.emit(task.id)">Delete</button>
+  ></mat-checkbox>
+  <div class="task-details">
+    <span class="task-title">{{ task.title }}</span>
+    <span class="task-desc">{{ task.description }}</span>
+  </div>
+  <button
+    mat-icon-button
+    color="warn"
+    (click)="delete.emit(task.id)"
+    class="delete-button"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
 </div>

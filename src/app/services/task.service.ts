@@ -15,11 +15,11 @@ export class TaskService {
 
   constructor() {
     // Initial task list (for testing)
-    this.tasks = [
-      new Task(1, 'Task 1', 'Description for Task 1', false),
-      new Task(2, 'Task 2', 'Description for Task 2', true),
-    ];
-    this.tasksSubject.next(this.tasks);
+    // this.tasks = [
+    //   new Task(1, 'Task 1', 'Description for Task 1', false),
+    //   new Task(2, 'Task 2', 'Description for Task 2', false),
+    // ];
+    // this.tasksSubject.next(this.tasks);
   }
 
   // Get all tasks
@@ -30,7 +30,7 @@ export class TaskService {
   // Add a new task
   addTask(task: Task): void {
     this.tasks.push(task);
-    this.tasksSubject.next(this.tasks); // Emit updated task list
+    this.tasksSubject.next(this.tasks);
   }
 
   // Edit an existing task

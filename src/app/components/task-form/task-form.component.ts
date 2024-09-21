@@ -3,15 +3,26 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
+  FormGroupDirective,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/task.model';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-task-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    CommonModule,
+  ],
   templateUrl: './task-form.component.html',
   styleUrl: './task-form.component.css',
 })
@@ -25,12 +36,12 @@ export class TaskFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.taskForm = this.fb.group({
-      title: ['', Validators.required],
+      title: ['', { validators: [Validators.required], updateOn: 'blur' }],
       description: [''],
     });
   }
 
-  onSubmit(): void {
+  onSubmit(formDirective: FormGroupDirective): void {
     if (this.taskForm.valid) {
       const newTask = new Task(
         Math.random(), // Temporary ID generation
@@ -38,7 +49,9 @@ export class TaskFormComponent implements OnInit {
         this.taskForm.value.description
       );
       this.taskService.addTask(newTask);
-      this.taskForm.reset();
+
+      // Use FormGroupDirective to reset form and validation state
+      formDirective.resetForm();
     }
   }
 }

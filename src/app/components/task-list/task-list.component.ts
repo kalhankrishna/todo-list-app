@@ -4,11 +4,13 @@ import { Task } from '../../models/task.model';
 import { TaskService } from '../../services/task.service';
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { CommonModule } from '@angular/common';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [TaskItemComponent, CommonModule],
+  imports: [TaskItemComponent, CommonModule, MatListModule, MatDividerModule],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css',
 })

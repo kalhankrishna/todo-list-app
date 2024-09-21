@@ -1,18 +1,43 @@
-<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-  <label for="title">Task Title:</label>
-  <input
-    id="title"
-    formControlName="title"
-    placeholder="Enter task title"
-    required
-  />
+<form
+  [formGroup]="taskForm"
+  (ngSubmit)="onSubmit(formDirective)"
+  #formDirective="ngForm"
+>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Task Title</mat-label>
+      <input matInput formControlName="title" placeholder="Enter task title" />
+      <mat-error
+        *ngIf="
+          taskForm.get('title')?.hasError('required') &&
+          taskForm.get('title')?.touched
+        "
+      >
+        Task title is required
+      </mat-error>
+      <mat-icon matSuffix>assignment</mat-icon>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Task Description</mat-label>
+      <input
+        matInput
+        formControlName="description"
+        placeholder="Enter task description"
+      />
+      <mat-icon matSuffix>edit</mat-icon>
+    </mat-form-field>
+  </div>
 
-  <label for="description">Task Description:</label>
-  <input
-    id="description"
-    formControlName="description"
-    placeholder="Enter task description"
-  />
-
-  <button type="submit" [disabled]="taskForm.invalid">Add Task</button>
+  <button
+    mat-fab
+    extended
+    color="primary"
+    type="submit"
+    [disabled]="!taskForm.valid"
+  >
+    <mat-icon inline="true">add_circle</mat-icon>
+    Add Task
+  </button>
 </form>
