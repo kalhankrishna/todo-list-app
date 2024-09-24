@@ -45,3 +45,4 @@ Thumbs.db
 .eslintrc
 .prettierrc
 eslint.config.js
+.aider*
